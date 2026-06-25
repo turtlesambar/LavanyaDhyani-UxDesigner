@@ -1,0 +1,693 @@
+/* =========================================================
+   LAVANYA — PORTFOLIO STYLESHEET
+   Built mobile-first. Breakpoints used throughout:
+     - 560px  -> small tablet tweaks (e.g. Creative Lab grid)
+     - 1024px -> desktop layout (nav, two-column sections)
+   Search "GSAP HOOK" to find spots meant for later animation.
+   ========================================================= */
+
+/* ---------- 1. RESET ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ---------- 2. DESIGN TOKENS ---------- */
+:root {
+  /* Color */
+  --color-bg: #f6f5f1;
+  --color-dot: #d7d4cb;
+  --color-surface-dark: #303030;
+  --color-text: #303030;
+  --color-text-muted: #7B7B7B;
+  --color-border: #e1ddd3;
+  --color-accent: #f2a8c9;
+  --color-tag-bg: #262626;
+  --color-tag-text: #F4F4F4;
+  --color-focus: #c43d83;
+
+  /* Type */
+  --font-base: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fs-h1: clamp(2rem, 1.3rem + 3.5vw, 3.5rem);
+  --fs-h2: clamp(1.5rem, 1.3rem + 1vw, 2.125rem);
+  --fs-h3: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --fs-body: 1rem;
+  --fs-small: 0.9375rem;
+  --fs-eyebrow: 0.9375rem;
+  --lh-body: 1.65;
+
+  /* Layout */
+  --container-width: 1200px;
+  --container-pad: 1.25rem;
+  --nav-height: 4.25rem;
+  --radius-pill: 999px;
+  --radius-md: 14px;
+
+  /* Motion (overridden to 0 under reduced-motion below) */
+  --transition-fast: 0.2s ease;
+  --transition-menu: 0.35s ease;
+}
+
+@media (min-width: 560px) {
+  :root {
+    --container-pad: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-pad: 3rem;
+  }
+}
+
+/* ---------- 3. BASE ---------- */
+body {
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); font-weight: 700; }
+
+p {
+  color: var(--color-text-muted);
+}
+
+/* Reusable centered container */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* ---------- 4. ACCESSIBILITY HELPERS ---------- */
+
+/* Visible only when focused via keyboard (WCAG 2.4.1 Bypass Blocks) */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateY(-120%);
+  background: var(--color-surface-dark);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  z-index: 3000;
+  border-radius: 0 0 var(--radius-md) 0;
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Consistent, clearly visible focus state on every interactive element
+   (WCAG 2.4.7 Focus Visible). Relies on :focus-visible so mouse clicks
+   don't show an outline, only keyboard/AT focus does. */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect users who've asked for less motion (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- 5. FIXED DOT-GRID BACKGROUND ----------
+   position: fixed means it sits relative to the viewport, so it never
+   scrolls with the page content. Sits behind everything (z-index -1). */
+.dot-grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle, var(--color-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* ---------- 6. HEADER / FIXED NAV ---------- */
+.site-header {
+  position: fixed;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding-inline: 1rem;
+}
+
+.nav-pill {
+  width: 100%;
+  max-width: var(--container-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--color-surface-dark);
+  color: #F4F4F4;
+  border-radius: var(--radius-pill);
+  padding: 0.6rem 0.75rem 0.6rem 1.25rem;
+  min-height: var(--nav-height);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Desktop nav links: hidden until 1024px */
+.primary-nav {
+  display: none;
+}
+
+.primary-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.primary-nav a {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  padding: 0.5rem 0.25rem;
+  transition: opacity var(--transition-fast);
+}
+
+.primary-nav a:hover {
+  opacity: 0.7;
+}
+
+/* Hamburger button: visible until 1024px */
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hamburger-icon {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 1.4rem;
+}
+
+.hamburger-icon span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+/* ---------- 7. MOBILE / TABLET SLIDE-IN MENU ----------
+   Off-canvas panel that slides in from the right.
+   "is-open" is toggled by js/script.js. */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: linear-gradient(180deg, #232323 0%, #141414 100%);
+  color: #fff;
+  transform: translateX(100%);
+  transition: transform var(--transition-menu);
+  /* GSAP HOOK: replace the transform transition above with a GSAP
+     timeline if you want a more elaborate open/close animation. */
+}
+
+.mobile-menu.is-open {
+  transform: translateX(0);
+}
+
+.mobile-menu-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo--light {
+  color: #fff;
+}
+
+.menu-close {
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.menu-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.menu-close svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 4.5rem;
+}
+
+.mobile-nav-list a {
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+/* Lock body scroll while the menu is open (class added by JS) */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ---------- 8. HERO ---------- */
+.hero {
+  padding-top: calc(var(--nav-height) + 3rem);
+  padding-bottom: 2rem;
+  min-height: 100dvh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.flower-strip {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end, center;
+}
+
+.flower-strip img {
+  width: 100%;
+  height: 100%;
+  display:block;
+  object-fit: cover;
+  /* GSAP HOOK: swap object-fit:cover for a wider source image (e.g.
+     width: auto; max-width: none;) and pan it horizontally for a
+     film-strip animation. */
+}
+
+.flower-strip--top {
+  margin-bottom: 1.5rem;
+}
+
+.flower-strip--bottom {
+  margin-top: 1.5rem;
+}
+
+.hero-content {
+    max-width: 70rem; /* try 60rem–80rem */
+    margin-inline: auto;
+    padding-inline: var(--container-pad);
+}
+
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  color: var(--color-text-muted);
+  width: 100%;
+  margin-bottom: 0.75rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.hero-content h1 {
+    max-width: none;
+    width: 100%;
+}
+
+/* ---------- 9. SECTION INTROS (shared by Ux Design / Creative Lab) ---------- */
+.section-intro {
+  max-width: 38rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-intro p {
+  margin-top: 0.75rem;
+}
+
+.ux-design,
+.creative-lab,
+.about,
+.skills {
+  padding-block: 4rem;
+}
+
+.ux-design,
+.creative-lab,
+.about,
+.skills {
+  padding-inline: var(--container-pad);
+}
+
+.ux-design > *,
+.creative-lab > *,
+.about > *,
+.skills > * {
+  max-width: var(--container-width);
+  margin-inline: auto;
+}
+
+/* ---------- 10. PROJECT CARDS (Ux Design) ---------- */
+.project-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-block: 2.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project-card:first-child {
+  padding-top: 0;
+}
+
+.project-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 2px;
+  background-color: var(--color-dot);
+}
+
+.project-content h3 a {
+  display: inline-block;
+  transition: opacity var(--transition-fast);
+}
+
+.project-content h3 a:hover {
+  opacity: 0.65;
+  text-decoration: underline;
+}
+
+.project-desc {
+  margin-top: 0.5rem;
+  max-width: 32rem;
+}
+
+.project-meta {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: var(--fs-small);
+}
+
+.meta-label {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* ---------- 11. CREATIVE LAB GRID ---------- */
+.lab-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+.lab-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 2px;
+  background-color: var(--color-dot);
+  margin-bottom: 1rem;
+}
+
+.lab-subtitle {
+  font-size: var(--fs-small);
+  margin-top: 0.25rem;
+}
+
+/* ---------- 12. MEET THE DESIGNER ---------- */
+.about-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.about-text p {
+  margin-top: 1rem;
+  max-width: 36rem;
+}
+
+.about-greeting {
+  font-weight: 700;
+  color: var(--color-text);
+  margin-top: 1rem;
+}
+
+.about-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.say-hi-link {
+  display: inline-block;
+  width: 8rem;
+  border-radius: var(--radius-md);
+}
+
+.camera-image {
+  width: 14rem;
+}
+
+@media (min-width: 1024px) {
+  .say-hi-link {
+    width: 9rem;
+  }
+
+  .camera-image {
+    width: 18rem;
+  }
+}
+
+/* ---------- 13. SKILLS / "WHAT DO I BRING" ---------- */
+.skills-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.skill-group {
+  margin-top: 2rem;
+}
+
+.skill-group:first-of-type {
+  margin-top: 1.5rem;
+}
+
+.skill-group h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.tag-list li {
+  background: #888888;
+  color: var(--color-tag-text);
+  font-size: var(--fs-small);
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-pill);
+}
+
+.skills-visual img {
+  width: 100%;
+  max-width: 22rem;
+  margin-inline: auto;
+}
+
+/* =========================================================
+   BREAKPOINT: ~560px and up
+   Creative Lab moves from 1 to 2 columns.
+   ========================================================= */
+@media (min-width: 560px) {
+  .lab-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =========================================================
+   BREAKPOINT: 1024px and up (desktop)
+   - Full inline nav replaces the hamburger
+   - Hero text right-aligned
+   - Project cards become image-left / text-right rows
+   - Meet the Designer + Skills become two-column layouts
+   ========================================================= */
+@media (min-width: 1024px) {
+
+  /* Nav */
+  .primary-nav {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  /* Hero: text-aligned right, single flower strip (bottom only) */
+  .hero-content {
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0;
+    max-width: 34rem;
+  }
+
+  .flower-strip--top {
+    display: none;
+  }
+
+  /* Project cards: image left, text right */
+  .project-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .project-image-link,
+  .project-image {
+    flex: 0 0 45%;
+  }
+
+  .project-content {
+    flex: 1;
+  }
+
+  /* Meet the Designer: two columns */
+  .about-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+
+  .about-text {
+    flex: 1;
+  }
+
+  .about-visual {
+    flex-shrink: 0;
+  }
+
+  /* Skills: two columns */
+  .skills-inner {
+    flex-direction: row;
+    gap: 5rem;
+  }
+
+  .skills-text {
+    flex: 1;
+  }
+
+  .skills-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Comfortable max width on very large screens */
+@media (min-width: 1440px) {
+  :root {
+    --container-width: 1280px;
+  }
+}
