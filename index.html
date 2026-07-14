@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavanya Dhyani | UX Designer Portfolio</title>
+  <meta name="description" content="Lavanya Dhyani is a UX designer exploring how design can make people feel understood. Browse UX case studies and creative lab experiments.">
+
+  <!-- Urbanist font (the only typeface used across the whole site) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+ 
+</head>
+<body>
+
+  <!-- Skip link: first focusable element, only visible on keyboard focus (WCAG 2.4.1) -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Fixed dot-grid background. Lives outside everything else so it never scrolls. -->
+  <div class="dot-grid-bg" aria-hidden="true"></div>
+
+  <!-- ============ HEADER / NAV (fixed on every breakpoint) ============ -->
+  <header class="site-header" id="top">
+    <div class="nav-pill">
+
+      <a class="logo" href="#hero-content" aria-label="Lavanya, back to top of page">
+        <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <img src="assets/images/logo.svg" alt="hand caricature that waves at you">
+        </svg>
+        <span class="logo-text">Lavanya</span>
+      </a>
+
+      <!-- Visible inline on desktop, hidden below 1024px -->
+      <nav class="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#ux-design">Ux Design</a></li>
+          <li><a href="#creative-lab">Creative lab</a></li>
+          <li><a href="#about">About me</a></li>
+          <li><a href="#contact-me">Contact me</a></li>
+        </ul>
+      </nav>
+
+      <!-- Visible below 1024px, hidden on desktop -->
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="hamburger-icon" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ============ MOBILE / TABLET SLIDE-IN MENU ============ -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-header">
+        <a class="logo logo--light" href="#top" aria-label="Lavanya, back to top of page">
+          <svg class="logo-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+             <img src="assets/images/logo.svg" alt="hand caricature that waves at you">
+          </svg>
+          <span class="logo-text">Lavanya</span>
+        </a>
+        <button type="button" class="menu-close" id="menu-close" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav aria-label="Mobile">
+        <ul class="mobile-nav-list">
+          <li><a href="#ux-design">Ux Design</a></li>
+          <li><a href="#creative-lab">Creative lab</a></li>
+          <li><a href="#about">About me</a></li>
+          <li><a href="#contact-me">Contact me</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+
+      <div class="h1-title"> 
+        <p class="eyebrow"> Lavanya Dhyani | Ux Designer</p>
+        <h1 class="hero-heading"> Exploring how design can make people feel understood</h1>
+      </div>
+
+    <div class="flower-gif"> 
+      <img src="assets/images/flower-garden.gif" alt="animated flower gif" loading="lazy">
+    </div>
+ </section>
+
+  <!-- BUT HOW DO I DO IT -->
+<section class="how-section" aria-labelledby="how-heading">
+  <div class="how-inner">
+
+    <h2 id="how-heading"> How do i do it?</h2>
+
+    <div class="how-grid">
+
+      <div class="how-item">
+        <!-- Swap the <div> below for <img src="assets/images/your.gif" alt="..."> when ready -->
+        <img class="how-icon" src="assets/images/Bridge.GIF" alt="Your icon" aria-hidden="true">
+        <p> <b>By bridging user<br>and business needs </b></p>
+      </div>
+
+      <div class="how-item">
+        <img class="how-icon" src="assets/images/Flower.GIF" alt="Your icon" aria-hidden="true">
+        <p><b>Creating accessible<br>digital spaces</b></p>
+      </div>
+
+
+      <div class="how-item">
+        <img class="how-icon" src="assets/images/Pen.GIF" alt="Your icon" aria-hidden="true">
+        <p><b>Using storytelling<br>and communication<br>design</b></p>
+      </div>
+
+         <div class="how-item">
+        <img class="how-icon" src="assets/images/Eye.GIF" alt="Your icon" aria-hidden="true">
+        <p><b>Leading with curiosity<br>and sense of play<br>design</b></p>
+      </div>
+
+      
+
+    </div>
+
+    <a class="how-link" href="#about">Learn more about me →</a>
+
+  </div>
+</section>
+        
+  <!-- ============ UX DESIGN ============ -->
+    <section class="ux-design" id="ux-design">
+      <div class="section-intro">
+        <h2>My work</h2>
+        <p>UX, for me, is driven by curiosity and empathy. Every project is about understanding real people and turning that into something clear, usable, and meaningful.</p>
+      </div>
+
+      <div class="project-list">
+
+        <!-- Project 1 -->
+        <article class="project-card" data-gsap="project-card">
+          <a class="project-image-link" href="case-studies/samsung.html" tabindex="-1" aria-hidden="true">
+            <img class="project-image" src="assets/images/samsung-thumnail.png" alt="" loading="lazy">
+          </a>
+          <div class="project-content">
+            <h3><a href="Samsung.html">Samsung</a></h3>
+            <p class="project-desc">Improving update scheduling, cancellation, and user control.</p>
+            <ul class="project-meta">
+              <li><span class="meta-label">Role:</span> Ux/UI Design, Research, Prototype</li>
+              <li><span class="meta-label">Duration:</span> 7 Days</li>
+              <li><span class="meta-label">Team:</span> Solo</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card" data-gsap="project-card">
+          <a class="project-image-link" href="case-studies/soda-shake-race.html" tabindex="-1" aria-hidden="true">
+            <img class="project-image" src="assets/images/sodashakerace-thumnail.png" alt="" loading="lazy">
+          </a>
+          <div class="project-content">
+            <h3><a href="case-studies/soda-shake-race.html">Soda Shake Race</a></h3>
+            <p class="project-desc">Designing a fun multiplayer game users can learn in under 10 seconds.</p>
+            <ul class="project-meta">
+              <li><span class="meta-label">Role:</span> Ux/UI Design, Illustration</li>
+              <li><span class="meta-label">Duration:</span> 15 Days</li>
+              <li><span class="meta-label">Team:</span> Solo</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card" data-gsap="project-card">
+          <a class="project-image-link" href="case-studies/boroline.html" tabindex="-1" aria-hidden="true">
+            <img class="project-image" src="assets/images/boroline-thumnail.png" alt="" loading="lazy">
+          </a>
+          <div class="project-content">
+            <h3><a href="case-studies/boroline.html">Boroline</a></h3>
+            <p class="project-desc">Re-imagining a heritage skincare brand for a new generation of consumers.</p>
+            <ul class="project-meta">
+              <li><span class="meta-label">Role:</span> Ux/UI Design, Graphic Design, Prototype</li>
+              <li><span class="meta-label">Duration:</span> 10 Days</li>
+              <li><span class="meta-label">Team:</span> Solo</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ CREATIVE LAB ============ -->
+    <section class="creative-lab" id="creative-lab">
+      <div class="section-intro">
+        <h2>Creative Lab</h2>
+        <p>Meaningful work comes from experimentation. I love working with different mediums of design and learning from them. Welcome to my creative lab, where I have fun and experiment.</p>
+      </div>
+
+      <div class="lab-grid">
+
+        <article class="lab-item" data-gsap="lab-item">
+          <img class="lab-image" src="assets/images/Black.gif" alt="Tap into Black project thumbnail" loading="lazy">
+          <h3 class="lab-title">Tap into Black</h3>
+          <p class="lab-subtitle">Game Trailer | Motion Graphics</p>
+        </article>
+
+        <article class="lab-item" data-gsap="lab-item">
+          <img class="lab-image" src="assets/images/HTPAFM-thumnail.gif" alt="How to preserve a Fishy marriage project thumbnail" loading="lazy">
+          <h3 class="lab-title">How to preserve a Fishy marriage</h3>
+          <p class="lab-subtitle">Short Film | Stop Motion</p>
+        </article>
+
+        <article class="lab-item" data-gsap="lab-item">
+          <img class="lab-image" src="assets/images/Fatima-thumbnail.png" alt="Fatima project thumbnail" loading="lazy">
+          <h3 class="lab-title">Fatima</h3>
+          <p class="lab-subtitle">2D Backgrounds | Illustration</p>
+        </article>
+
+        <article class="lab-item" data-gsap="lab-item">
+          <img class="lab-image" src="assets/images/Black-storyboard-thumnail.gif" alt="BLACK: Loading Screen project thumbnail" loading="lazy">
+          <h3 class="lab-title">BLACK: Loading Screen</h3>
+          <p class="lab-subtitle">StoryBoards | Animatics</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ MEET THE DESIGNER ============ -->
+    <section class="about" id="about">
+      <div class="about-inner">
+
+        <div class="about-text">
+          <h2>Meet the Designer</h2>
+          <p class="about-greeting">Hi!</p>
+          <p>I'm Lavanya, a UX designer with also a  <b>background in animation and visual storytelling </b>. My work is driven by empathy and a love of play. I'm fascinated by how people feel, move, and interact, and I believe great design, like great storytelling, should make people feel understood and included. I bring <b> curiosity, collaboration, and a knack for turning complex problems into simple, intuitive solutions </b>. Always experimenting, always learning. Let's create something meaningful together!</p>
+        </div>
+
+        <div class="about-visual">
+          <!-- "Say hi!" doubles as the Contact me destination and a working mailto link.
+               Swap the email address below, and swap the placeholder for your hand-drawn "Say hi!" graphic. -->
+           <a class="say-hi-link" aria-label="Say hi!">
+            <img class="say-hi-graphic" src="assets/images/hi for pc.PNG" alt="" loading="lazy">
+           </a>
+           
+           <div class="camera-wrapper">
+            <img class="camera-image"
+           src="assets/images/Camera.png"
+           alt="Camera">
+
+           <img class="polaroid"
+           src="assets/images/polaroid.png"
+           alt="Lavanya"> </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ WHAT DO I BRING TO THE TABLE ============ -->
+    <section class="skills">
+      <div class="skills-inner">
+
+        <div class="skills-text">
+          <h2>What do i Bring to the table?</h2>
+
+          <div class="skill-group">
+            <h3>Design Domains</h3>
+            <ul class="tag-list">
+              <li>Game Ux/UI</li>
+              <li>OS Features</li>
+              <li>Mobile Apps</li>
+              <li>E-Commerce</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Core Ux Skills</h3>
+            <ul class="tag-list">
+              <li>User Research</li>
+              <li>Interaction Design</li>
+              <li>Visual Design</li>
+              <li>Wire Framing and Prototyping</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Motion and Story Telling</h3>
+            <ul class="tag-list">
+              <li>Motion Graphics</li>
+              <li>Storyboarding</li>
+              <li>Narrative design</li>
+              <li>Empathy</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Tools</h3>
+            <ul class="tag-list">
+              <li>Figma</li>
+              <li>Adobe suite</li>
+              <li>Framer</li>
+              <li>HTML / CSS</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>What makes me different?</h3>
+            <ul class="tag-list">
+              <li>Framer</li>
+              <li>Visual storyteller</li>
+              <li>HTML / CSS</li>
+              <li>Animation background</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="skills-visual">
+          <img src="assets/images/Table.png" alt="Illustration of a side table holding design tool icons and traits like curiosity, empathy, and collaboration" loading="lazy">
+        </div>
+
+      </div>
+    </section>
+                    
+    <!-- ============ Contact info ============ -->
+     <section class="contact-me" id="contact-me">
+      <div class="contact-heading"> <h2> Enjoyed my work? Let's chat.</h2>
+  <div class="contact-icons"></div> 
+  </div> 
+  <div class="contact-list">
+   <ul class="contact information"> 
+    <li class="contact-list"> <img class="contact-icons" src="assets\images\email-svgrepo-com.svg" alt="email icon"> <a href="mailto:lavanyadhyani30@gmail.com" class="contact-links" target="_blank">lavanyadhyani30@gmail.com </a></li> 
+    <li class="contact-list"> <img class="contact-icons" src="assets\images\instagram-svgrepo-com.svg" alt="instagram logo icon"> <a href="https://www.instagram.com/turtle_sambar?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="contact-links" target="_blank">turtle_sambar</a></li> 
+    <li class="contact-list"> <img class="contact-icons" src="assets\images\linkedin-svgrepo-com.svg" alt="Linkedin logo icon"> <a href="https://www.linkedin.com/in/lavanya-dhyani-18b6351b6/" class="contact-links" target="_blank">Lavanya Dhyani</a></li> 
+   </ul>
+  </div>
+     <a href="https://forms.gle/J1qHpNPvdezKKwYs8" target="_blank">
+     <button class="body-button"> Contact form
+  </button> </a>
+ </section>
+
+   <p class="copyright"> The website and its work are properties of Lavanya Dhyani, 2026 &copy;</p>
+
+  </main>
+
+  <script src="js/script.js"></script>
+
+   <!-- ============ contact me ============ -->
+
+
+</body>
+</html>
